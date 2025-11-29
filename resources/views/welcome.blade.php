@@ -3,11 +3,51 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Negodux</title>
+        <title>Negodux - Equity-Based Mentorship for Indonesian UMKM</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { 
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            @keyframes scaleIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.95);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.8s ease-out;
+            }
+            .animate-slideUp {
+                animation: slideUp 0.8s ease-out;
+            }
+            .animate-scaleIn {
+                animation: scaleIn 0.6s ease-out;
+            }
+            .delay-100 { animation-delay: 0.1s; }
+            .delay-200 { animation-delay: 0.2s; }
+            .delay-300 { animation-delay: 0.3s; }
+            .delay-400 { animation-delay: 0.4s; }
+            .animate-delay { opacity: 0; animation-fill-mode: forwards; }
+        </style>
     </head>
     <body class="antialiased font-sans text-gray-900 bg-white">
         <!-- Navbar -->
@@ -20,13 +60,22 @@
                     </a>
                 </div>
                 <div class="flex items-center gap-8">
-                    <a href="/umkm" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">UMKM</a>
-                    <a href="#" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">Mentors</a>
-                    <a href="/faq" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">FAQ</a>
+                    <a href="/umkm" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600 transition-colors relative group">
+                        UMKM
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/mentors" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600 transition-colors relative group">
+                        Mentors
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/faq" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600 transition-colors relative group">
+                        FAQ
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></span>
+                    </a>
                     
                     @auth
                         <div class="relative" x-data="{ open: false }">
-                            <button @click="open = !open" class="text-xs font-bold uppercase tracking-wide border border-gray-200 rounded px-4 py-2 hover:bg-gray-50 flex items-center gap-2">
+                            <button @click="open = !open" class="text-xs font-bold uppercase tracking-wide border border-gray-200 rounded px-4 py-2 hover:bg-gray-50 flex items-center gap-2 transition-all">
                                 {{ Auth::user()->name }}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                             </button>
@@ -38,46 +87,50 @@
                             </div>
                         </div>
                     @else
-                        <a href="/login" class="text-xs font-bold uppercase tracking-wide border border-gray-200 rounded px-4 py-2 hover:bg-gray-50">Login / Register</a>
+                        <a href="/login" class="text-xs font-bold uppercase tracking-wide border border-gray-200 rounded px-4 py-2 hover:bg-gray-50 transition-all">Login / Register</a>
                     @endauth
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <main class="max-w-4xl mx-auto px-8 pt-32 pb-24 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-gray-900 leading-tight">
+        <section class="max-w-5xl mx-auto px-8 pt-32 pb-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight animate-slideUp">
                 Empowering Indonesian SMEs Through Expert Mentorship
             </h1>
-            <p class="text-gray-500 text-base mb-10 max-w-2xl mx-auto leading-relaxed">
-                Negodux bridges the gap between growing businesses and experienced professionals.<br>
+            <p class="text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed animate-slideUp animate-delay delay-100">
+                Negodux bridges the gap between growing businesses and experienced professionals.<br/>
                 Help local enterprises thrive while earning equity stakes in promising ventures.
             </p>
-            <div class="flex justify-center gap-4">
-                <a href="/umkm" class="bg-gray-900 text-white px-6 py-2.5 rounded text-sm font-bold hover:bg-gray-800 transition-colors">Explore UMKM</a>
-                <button class="bg-white text-gray-900 border border-gray-200 px-6 py-2.5 rounded text-sm font-bold hover:bg-gray-50 transition-colors">Find Mentors</button>
+            <div class="flex items-center justify-center gap-4 animate-fadeIn animate-delay delay-200">
+                <a href="/umkm" class="bg-gray-900 text-white px-6 py-3 rounded text-sm font-bold hover:bg-gray-800 transition-all hover:scale-105">
+                    Browse UMKM Businesses
+                </a>
+                <a href="/mentors" class="border border-gray-900 text-gray-900 px-6 py-3 rounded text-sm font-bold hover:bg-gray-50 transition-all hover:scale-105">
+                    Find Mentors
+                </a>
             </div>
-        </main>
+        </section>
 
         <!-- Features Section -->
-        <section class="max-w-6xl mx-auto px-8 py-16">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                <!-- Targeted Matching -->
-                <div class="flex flex-col items-center">
-                    <div class="mb-6">
-                         <!-- Icon: Target -->
+        <section class="max-w-6xl mx-auto px-8 py-16 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Expert Guidance -->
+                <div class="flex flex-col items-center animate-slideUp animate-delay delay-100">
+                    <div class="mb-6 transition-transform hover:scale-110 duration-300">
+                        <!-- Icon: Lightbulb -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-800">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.834.166-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243-1.59-1.59" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                         </svg>
                     </div>
-                    <h3 class="text-sm font-bold mb-2">Targeted Matching</h3>
+                    <h3 class="text-sm font-bold mb-2">Expert Guidance</h3>
                     <p class="text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
                         Connect with businesses that need your specific expertise, from supply chain to digital marketing.
                     </p>
                 </div>
                 <!-- Equity-Based Rewards -->
-                <div class="flex flex-col items-center">
-                    <div class="mb-6">
+                <div class="flex flex-col items-center animate-slideUp animate-delay delay-200">
+                    <div class="mb-6 transition-transform hover:scale-110 duration-300">
                         <!-- Icon: Handshake -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-800">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.951a.983.983 0 0 1-.821 1.085l-1.337.267a1.912 1.912 0 0 0-1.226 1.183l-.313.939a.966.966 0 0 0 .923 1.275h1.078m1.971-8.96c.712 0 1.316.463 1.516 1.103l.313.939a.966.966 0 0 1-.923 1.275h-1.078a.966.966 0 0 1-.923-1.275l.313-.939a1.912 1.912 0 0 0-1.226-1.183l-1.337-.267a.983.983 0 0 1-.821-1.085l.075-5.951m8.892 8.183a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.951a.983.983 0 0 1-.821 1.085l-1.337.267a1.912 1.912 0 0 0-1.226 1.183l-.313.939a.966.966 0 0 0 .923 1.275h1.078" />
@@ -89,8 +142,8 @@
                     </p>
                 </div>
                 <!-- Growth Opportunities -->
-                <div class="flex flex-col items-center">
-                    <div class="mb-6">
+                <div class="flex flex-col items-center animate-slideUp animate-delay delay-300">
+                    <div class="mb-6 transition-transform hover:scale-110 duration-300">
                         <!-- Icon: Growth -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-800">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.519l2.74-1.22m0 0-5.94-2.28m5.94 2.28-2.28 5.941" />
@@ -108,7 +161,7 @@
         <section class="max-w-5xl mx-auto px-8 py-16 mb-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- For Mentors -->
-                <div class="border border-gray-200 rounded-lg p-8 hover:shadow-md transition-shadow cursor-pointer">
+                <div class="border border-gray-200 rounded-lg p-8 hover:shadow-lg hover:scale-105 transition-all cursor-pointer animate-scaleIn animate-delay delay-100">
                     <div class="mb-4">
                          <!-- Icon: Document/List -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-800">
@@ -119,12 +172,12 @@
                     <p class="text-xs text-gray-500 mb-6 leading-relaxed">
                         Browse businesses seeking mentorship and support. Apply your expertise to help them overcome challenges and achieve their growth goals.
                     </p>
-                    <a href="#" class="text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all text-gray-900">
+                    <a href="/umkm" class="text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all text-gray-900">
                         View UMKM Businesses <span>&rarr;</span>
                     </a>
                 </div>
                 <!-- For UMKM Businesses -->
-                <div class="border border-gray-200 rounded-lg p-8 hover:shadow-md transition-shadow cursor-pointer">
+                <div class="border border-gray-200 rounded-lg p-8 hover:shadow-lg hover:scale-105 transition-all cursor-pointer animate-scaleIn animate-delay delay-200">
                     <div class="mb-4">
                         <!-- Icon: User -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-800">
@@ -135,7 +188,7 @@
                     <p class="text-xs text-gray-500 mb-6 leading-relaxed">
                         Connect with experienced mentors who specialize in various business domains. Get the strategic guidance you need to scale your business.
                     </p>
-                    <a href="#" class="text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all text-gray-900">
+                    <a href="/mentors" class="text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all text-gray-900">
                         Find Professional Mentors <span>&rarr;</span>
                     </a>
                 </div>

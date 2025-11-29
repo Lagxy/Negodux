@@ -3,10 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>UMKM Businesses - Negodux</title>
+        <title>Professional Mentors - Negodux</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
+        <script defer src="https://cdn.jsd
+
+elivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased font-sans text-gray-900 bg-white">
@@ -49,12 +51,12 @@
             <div class="flex items-center justify-between mb-8">
                 <h1 class="text-2xl font-bold flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                     </svg>
-                    UMKM Businesses
+                    Professional Mentors
                 </h1>
-                <a href="/umkm/create" class="bg-gray-900 text-white px-4 py-2 rounded text-xs font-bold flex items-center gap-2 hover:bg-gray-800">
-                    <span>+</span> Register UMKM
+                <a href="/mentors/create" class="bg-gray-900 text-white px-4 py-2 rounded text-xs font-bold flex items-center gap-2 hover:bg-gray-800">
+                    <span>+</span> Register as Mentor
                 </a>
             </div>
 
@@ -66,51 +68,56 @@
                           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </span>
-                    <input type="text" id="searchInput" placeholder="Search by business name..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400">
+                    <input type="text" id="searchInput" placeholder="Search by mentor name..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400">
                 </div>
                 <div>
                     <select id="sortSelect" class="w-full px-4 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400 bg-white">
                         <option value="default">Default</option>
-                        <option value="high-low">Stake: Highest to Lowest</option>
-                        <option value="low-high">Stake: Lowest to Highest</option>
+                        <option value="name-asc">Name: A-Z</option>
+                        <option value="name-desc">Name: Z-A</option>
+                        <option value="experience-desc">Most Experienced</option>
                     </select>
                 </div>
                 <div>
-                    <select id="categorySelect" class="w-full px-4 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400 bg-white">
-                        <option value="all">All Categories</option>
-                        <option value="F&B">F&B</option>
-                        <option value="Fashion">Fashion</option>
-                        <option value="Manufacturing">Manufacturing</option>
-                        <option value="Beauty">Beauty</option>
+                    <select id="expertiseSelect" class="w-full px-4 py-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-gray-400 bg-white">
+                        <option value="all">All Expertise</option>
+                        <option value="Supply Chain">Supply Chain</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Finance">Finance</option>
+                        <option value="International Trade">International Trade</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Branding">Branding</option>
                     </select>
                 </div>
             </div>
 
             <!-- Grid -->
-            <div id="umkmGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach($umkms as $umkm)
-                <div class="umkm-card border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow" data-category="{{ $umkm->category }}" data-stake="{{ str_replace('%', '', $umkm->reward) }}" data-name="{{ $umkm->name }}">
-                    <div class="h-48 bg-gray-200 w-full object-cover">
-                        <img src="{{ $umkm->image }}" alt="{{ $umkm->name }}" class="w-full h-full object-cover">
+            <div id="mentorGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                @foreach($mentors as $mentor)
+                <div class="mentor-card border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow" data-expertise="{{ $mentor->expertise }}" data-name="{{ $mentor->name }}" data-experience="{{ $mentor->years_experience }}">
+                    <div class="h-56 bg-gray-200 w-full object-cover">
+                        <img src="{{ $mentor->photo }}" alt="{{ $mentor->name }}" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-bold text-base">{{ $umkm->name }}</h3>
-                            <span class="bg-gray-100 text-gray-600 text-[10px] px-2 py-1 rounded-full font-bold">{{ $umkm->category }}</span>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-4 line-clamp-2">{{ $umkm->description }}</p>
-                        
                         <div class="mb-3">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">Needs:</p>
-                            <p class="text-xs text-gray-700">{{ $umkm->needs }}</p>
+                            <h3 class="font-bold text-base mb-1">{{ $mentor->name }}</h3>
+                            <p class="text-xs text-gray-500 mb-2">{{ $mentor->title }}</p>
+                            <span class="bg-gray-900 text-white text-[10px] px-2 py-1 rounded font-bold">{{ $mentor->expertise }}</span>
                         </div>
                         
-                        <div class="mb-4">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">Reward:</p>
-                            <p class="text-xl font-bold text-gray-900">{{ $umkm->reward }} <span class="text-[10px] text-gray-500 font-normal">equity stake</span></p>
+                        <p class="text-xs text-gray-600 mb-3">{{ $mentor->years_experience }}</p>
+                        
+                        <div class="flex items-center gap-2 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>
+                            <span class="text-xs text-gray-600">{{ $mentor->email }}</span>
                         </div>
                         
-                        <a href="/umkm/{{ $umkm->id }}" class="w-full bg-gray-900 text-white py-2 rounded text-xs font-bold hover:bg-gray-800 block text-center">View Details</a>
+                        <div class="flex gap-2">
+                            <a href="/mentors/{{ $mentor->id }}" class="flex-1 bg-gray-900 text-white py-2 rounded text-xs font-bold hover:bg-gray-800 text-center">View Details</a>
+                            <a href="mailto:{{ $mentor->email }}" class="flex-1 border border-gray-200 text-gray-900 py-2 rounded text-xs font-bold hover:bg-gray-50 text-center">Contact Mentor</a>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -118,7 +125,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="max-w-7xl mx-auto px-8 py-8 text-center">
+        <footer class="max-w-7xl mx-auto px-8 py-8 text-center border-t border-gray-100 mt-12">
             <p class="text-[10px] text-gray-400">
                 &copy; 2025 Negodux. All rights reserved.
             </p>
@@ -128,24 +135,24 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const searchInput = document.getElementById('searchInput');
                 const sortSelect = document.getElementById('sortSelect');
-                const categorySelect = document.getElementById('categorySelect');
-                const grid = document.getElementById('umkmGrid');
-                const cards = Array.from(document.querySelectorAll('.umkm-card'));
+                const expertiseSelect = document.getElementById('expertiseSelect');
+                const grid = document.getElementById('mentorGrid');
+                const cards = Array.from(document.querySelectorAll('.mentor-card'));
 
                 function filterAndSort() {
                     const searchTerm = searchInput.value.toLowerCase();
-                    const selectedCategory = categorySelect.value;
+                    const selectedExpertise = expertiseSelect.value;
                     const sortValue = sortSelect.value;
 
                     // Filter
                     const filteredCards = cards.filter(card => {
                         const name = card.dataset.name.toLowerCase();
-                        const category = card.dataset.category;
+                        const expertise = card.dataset.expertise;
                         
                         const matchesSearch = name.includes(searchTerm);
-                        const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+                        const matchesExpertise = selectedExpertise === 'all' || expertise === selectedExpertise;
 
-                        if (matchesSearch && matchesCategory) {
+                        if (matchesSearch && matchesExpertise) {
                             card.style.display = 'block';
                             return true;
                         } else {
@@ -155,28 +162,27 @@
                     });
 
                     // Sort
-                    const visibleCards = filteredCards; // Only sort visible cards
-                    
                     if (sortValue !== 'default') {
-                        visibleCards.sort((a, b) => {
-                            const stakeA = parseFloat(a.dataset.stake);
-                            const stakeB = parseFloat(b.dataset.stake);
-                            
-                            if (sortValue === 'high-low') {
-                                return stakeB - stakeA;
-                            } else {
-                                return stakeA - stakeB;
+                        filteredCards.sort((a, b) => {
+                            if (sortValue === 'name-asc') {
+                                return a.dataset.name.localeCompare(b.dataset.name);
+                            } else if (sortValue === 'name-desc') {
+                                return b.dataset.name.localeCompare(a.dataset.name);
+                            } else if (sortValue === 'experience-desc') {
+                                const expA = parseInt(a.dataset.experience);
+                                const expB = parseInt(b.dataset.experience);
+                                return expB - expA;
                             }
                         });
                     }
 
                     // Re-append sorted cards
-                    visibleCards.forEach(card => grid.appendChild(card));
+                    filteredCards.forEach(card => grid.appendChild(card));
                 }
 
                 searchInput.addEventListener('input', filterAndSort);
                 sortSelect.addEventListener('change', filterAndSort);
-                categorySelect.addEventListener('change', filterAndSort);
+                expertiseSelect.addEventListener('change', filterAndSort);
             });
         </script>
     </body>

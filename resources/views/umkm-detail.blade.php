@@ -21,7 +21,7 @@
                 </div>
                 <div class="flex items-center gap-8">
                     <a href="/umkm" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">UMKM</a>
-                    <a href="#" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">Mentors</a>
+                    <a href="/mentors" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">Mentors</a>
                     <a href="/faq" class="text-xs font-bold uppercase tracking-wide hover:text-gray-600">FAQ</a>
                     
                     @auth
