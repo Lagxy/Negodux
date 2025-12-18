@@ -26,8 +26,8 @@ php artisan migrate --force
 
 echo "Running seeders..."
 
-# Run seeders  
-php artisan db:seed --force
+# Run seeders (with --class to ensure it runs)
+php artisan db:seed --class=DatabaseSeeder --force
 
 echo "Optimizing Laravel..."
 php artisan config:clear
