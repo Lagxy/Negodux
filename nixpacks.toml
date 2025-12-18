@@ -5,6 +5,3 @@ nixPkgs = ['nodejs', 'php82', 'php82Packages.composer', 'php82Extensions.pdo_mys
 cmds = [
     'composer install --no-dev --optimize-autoloader --no-interaction'
 ]
-
-[start]
-cmd = 'chmod +x start.sh && bash start.sh'
