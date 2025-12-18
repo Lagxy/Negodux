@@ -8,3 +8,6 @@ cmds = [
 
 [start]
 cmd = 'chmod +x start.sh && bash start.sh'
+
+[variables]
+PORT = '8080'
