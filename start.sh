@@ -29,11 +29,16 @@ echo "Running seeders..."
 # Run seeders  
 php artisan db:seed --force
 
-echo "Clearing and caching config..."
+echo "Optimizing Laravel..."
 php artisan config:clear
 php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 
-echo "Starting Laravel server..."
+# Set proper permissions
+chmod -R 755 storage bootstrap/cache
 
-# Start the server
-php artisan serve --host=0.0.0.0 --port=${PORT}
+echo "Starting web server on port ${PORT:-8080}..."
+
+# Use PHP built-in server with public directory as document root
+php -S 0.0.0.0:${PORT:-8080} -t public

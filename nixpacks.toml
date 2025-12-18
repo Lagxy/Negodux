@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['nodejs', 'php82', 'php82Packages.composer', 'bash']
+nixPkgs = ['nodejs', 'php82', 'php82Packages.composer']
 
 [phases.install]
 cmds = [
@@ -8,6 +8,3 @@ cmds = [
 
 [start]
 cmd = 'chmod +x start.sh && bash start.sh'
-
-[variables]
-PORT = '8080'
